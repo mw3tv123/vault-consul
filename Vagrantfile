@@ -4,11 +4,9 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04"
   config.vm.hostname = "vault"
-  # config.ssh.private_key_path = "~/.ssh/id_rsa"
-  config.ssh.forward_agent = true
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
-    config.proxy.http     = "http://192.168.101.137:8080"
+    config.proxy.http     = "http://10.10.10.10:8080"
     config.proxy.no_proxy = "localhost,127.0.0.1,.tma.com.vn,192.168."
   end
 
@@ -23,7 +21,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./data", "/shared"
 
   config.vm.provider "virtualbox" do |vb|
-     vb.gui = false
+     vb.gui = true
      vb.memory = "512"
   end
 
