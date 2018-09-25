@@ -7,7 +7,7 @@ if [[ -z $(which curl) || -z $(which git) || -z $(which vim) ]]; then
   sudo apt-get install -y curl git vim
 fi
 
-if [[ ! -z $(which chef-client) ]]; then
+if [[ -z $(which chef-client) ]]; then
   echo "Installing ChefDK ... "
   curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable -v 3.2.30
 fi
