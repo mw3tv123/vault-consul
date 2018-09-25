@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "bento/ubuntu-16.04-i386"
   config.vm.hostname = "vault"
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
      vb.gui = false
      vb.memory = "512"
+     vb.cpus = 1
   end
 
   config.vm.provision "shell", inline: <<-SHELL
