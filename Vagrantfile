@@ -4,7 +4,8 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04"
   config.vm.hostname = "vault"
-  config.ssh.insert_key = false
+  config.ssh.private_key_path = "~/.ssh/id_rsa"
+  config.ssh.forward_agent = true
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
     config.proxy.http     = "http://192.168.101.137:8080"
