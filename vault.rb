@@ -1,5 +1,3 @@
-user = node['etc']['passwd'].user
-
 # Update the host system
 apt_update
 
@@ -13,7 +11,7 @@ remote_file 'vault_0.11.1_linux_amd64.zip' do
   checksum 'eb8d2461d0ca249c1f91005f878795998bdeafccfde0b9bae82343541ce65996'
 end
 
-directory '{user}/vault' do
+directory '{node['etc']['passwd']}/vault' do
   # action :create
 end
 
