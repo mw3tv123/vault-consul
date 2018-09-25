@@ -14,10 +14,9 @@ end
 # Extract Consul
 bash 'extract_module' do
   code <<-EOH
-    mkdir vault
-
+    mkdir -p vault
     echo "Unziping Vault ... "
-    unzip vault_0.11.1_linux_amd64.zip -d vault
+    unzip vault_0.11.1_linux_amd64.zip -d vault/
     EOH
   not_if { ::File.exist?('~/vault/vault') }
 end
