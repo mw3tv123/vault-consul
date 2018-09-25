@@ -14,8 +14,8 @@ Vagrant.configure("2") do |config|
 	    config.vbguest.auto_update = false
 	end
 
-  config.vm.network "public_network",
-    ip: "192.168.101.100"
+  config.vm.network "private_network",
+    ip: "192.168.50.10"
 
   config.vm.synced_folder "./data", "/shared"
 
