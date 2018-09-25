@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "ubuntu/xenial64"
   config.vm.hostname = "vault"
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
@@ -15,7 +15,6 @@ Vagrant.configure("2") do |config|
 	end
 
   config.vm.network "public_network",
-    # bridge: "enp0s3",
     ip: "192.168.101.100"
 
   config.vm.synced_folder "./data", "/shared"
