@@ -7,7 +7,7 @@ if [[ -z $(which curl) || -z $(which git) || -z $(which vim) ]]; then
   sudo apt-get install -y curl git vim
 fi
 
-[[ $? -eq 0 && -z $(which chef-client) ]] && \
+[[ -z $(which chef-client) ]] && \
   echo "DONE. Installing ChefDK ... " || \
   { echo "FAILED. Unable to install needed packages. Exit now. "; exit 0; }
 
