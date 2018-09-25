@@ -12,7 +12,7 @@ remote_file 'vault_0.11.1_linux_amd64.zip' do
 end
 
 directory '/root/vault' do
-  # action :create
+  action :create
 end
 s
 # Extract Vault
