@@ -16,12 +16,8 @@ bash 'extract_module' do
   code <<-EOH
     mkdir vault
 
-    echo "Unziping consul ... "
+    echo "Unziping Vault ... "
     unzip vault_0.11.1_linux_amd64.zip -d vault
-
-    echo "Add vault to PATH ..."
-    echo "export PATH=\"$PATH:$HOME/vault\"" >> ~/.bashrc
-    source ~/.bashrc
     EOH
   not_if { ::File.exist?('~/vault/vault') }
 end

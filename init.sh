@@ -20,6 +20,9 @@ curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable 
 cp vault.rb .. && cd ..
 sudo chef-client --local-mode vault.rb
 
+echo "Add vault to PATH ..."
+echo "export PATH=\"$PATH:$HOME/vault\"" >> ~/.profile && source ~/.profile
+
 [ $? -eq 0 ] && \
   echo "DONE. Vault has been sucessfully installed! Exit now." || \
   echo "FAILED to install Vault. Exit now."
