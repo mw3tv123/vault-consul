@@ -23,7 +23,6 @@ end
 execute 'extract_module' do
   command 'unzip -o /tmp/consul_1.2.3_linux_amd64.zip -d /opt/consul/'
   live_stream true
-  not_if { ::File.exist?('/opt/consul/consul') }
 end
 
 # Create a symlink for Consul
@@ -37,7 +36,6 @@ end
 # Add service for Consul
 template '/etc/systemd/system/consul.service' do
   source 'consul.service.erb'
-  not_if { ::File.exist?('/etc/systemd/system/consul.service') }
 end
 
 # Start Consul as a service
