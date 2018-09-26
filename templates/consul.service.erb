@@ -1,0 +1,13 @@
+[Unit]
+Description=Consul Storage Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Environment=/opt/consul
+ExecStart=/opt/consul
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

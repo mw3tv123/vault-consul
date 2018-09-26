@@ -14,13 +14,15 @@ fi
 
 [ $? -eq 0 ] && \
   echo "DONE. Installing Vault ... " || \
-  { echo "FAILED. Unable to install Vault. Exit now. "; exit 0; }
+  { echo "FAILED. Unable to install Vault. Exit now."; exit 1; }
 
 sudo chef-client --local-mode vault.rb consul.rb
 
 echo "Add Vault, Consul to PATH ..."
-echo "export PATH=\"$PATH:/usr/bin/vault:/usr/bin/consul\"" >> ~/.profile && source ~/.profile
+echo "export PATH=\"$PATH:/usr/bin/vault:/usr/bin/consul\"" >> ~/.profile && . ~/.profile
 
 [ $? -eq 0 ] && \
-  echo "DONE. Vault has been sucessfully installed! Exit now." || \
-  echo "FAILED to install Vault. Exit now."
+  echo "DONE. Vault and Consul has been sucessfully installed! Prepare to lauch Vault and Consul!" || \
+  { echo "FAILED to install Vault. Exit now."; exit 1; }
+
+

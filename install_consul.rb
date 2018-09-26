@@ -28,3 +28,11 @@ link 'symlink_vault' do
   target_file '/usr/bin/consul'
   to '/opt/consul'
 end
+
+template '/etc/systemd/system/consul.service' do
+  source 'consul.service.erb'
+end
+
+service 'consul' do
+  action [:enable, :start]
+end
