@@ -16,7 +16,7 @@ fi
   echo "DONE. Installing Vault ... " || \
   { echo "FAILED. Unable to install Vault. Exit now."; exit 1; }
 
-sudo chef-client --local-mode install_vault.rb install_consul.rb
+sudo chef-client --local-mode --runlist 'recipe[install_vault],install_consul'
 
 echo "Add Vault, Consul to PATH ..."
 echo "export PATH=\"$PATH:/usr/bin/vault:/usr/bin/consul\"" >> ~/.profile && . ~/.profile
