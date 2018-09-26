@@ -20,7 +20,7 @@ end
 
 # Extract Vault
 script 'extract_module' do
-  interprefer "bash"
+  interpreter "bash"
   code <<-EOH
     cd ~/vault_consul && cp config.hcl /opt/vault/config.hcl
     unzip -o /tmp/vault_0.11.1_linux_amd64.zip -d /opt/vault/
