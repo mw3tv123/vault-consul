@@ -18,17 +18,13 @@ directory '/opt/vault' do
   not_if { ::Dir.exist?('/opt/vault') }
 end
 
-remote_file 'copy_config' do
-  source 'file:///$HOME/vault_consul/config.hcl'
-  path '/opt/vault/config.hcl'
-  show_progress true
-  not_if { ::File.exist?('/opt/vault/config.hcl') }
-end
-
 # Extract Vault
-execute 'extract_module' do
-  command 'unzip -o /tmp/vault_0.11.1_linux_amd64.zip -d /opt/vault/'
-  live_stream true
+script 'extract_module' do
+  interprefer "bash"
+  code <<-EOH
+    cd ~/vault_consul && cp config.hcl /opt/vault/config.hcl
+    unzip -o /tmp/vault_0.11.1_linux_amd64.zip -d /opt/vault/
+    EOH
   not_if { ::File.exist?('/opt/vault/vault') }
 end
 
