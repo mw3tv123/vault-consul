@@ -21,6 +21,8 @@ sudo chef-client --local-mode --runlist 'install_consul,install_vault'
 echo "Add Vault, Consul to PATH ..."
 echo "export PATH=\"$PATH:/usr/bin/vault:/usr/bin/consul\"" >> ~/.profile && . ~/.profile
 
+[[ $(whoami) == "root" ]] && systemctl daemon-reload || sudo systemctl daemon-reload
+
 [ $? -eq 0 ] && \
-  echo "DONE. Vault and Consul has been sucessfully installed! Prepare to lauch Vault and Consul!" || \
+  echo "DONE. Vault and Consul has been sucessfully installed! Use \"vault operator init\" to initial vault server!" || \
   { echo "FAILED to install Vault. Exit now."; exit 1; }
