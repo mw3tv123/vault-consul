@@ -18,7 +18,7 @@ end
 
 # Extract Vault
 execute 'extract_module' do
-  command 'unzip -fo vault_0.11.1_linux_amd64.zip -d /opt/vault/'
+  command 'unzip -o vault_0.11.1_linux_amd64.zip -d /opt/vault/'
   live_stream true
   not_if { ::File.exist?('/opt/vault/vault') }
 end
