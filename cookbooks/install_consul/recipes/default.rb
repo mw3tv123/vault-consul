@@ -13,6 +13,7 @@ remote_file 'download_consul_binary' do
   not_if { ::File.exist?('/tmp/consul_1.2.3_linux_amd64.zip') }
 end
 
+# Create Consul directory
 directory '/opt/consul' do
   # action :create
   not_if { ::Dir.exist?('/opt/consul') }
@@ -25,6 +26,7 @@ execute 'extract_module' do
   not_if { ::File.exist?('/opt/consul/consul') }
 end
 
+# Create a symlink for Consul
 link 'symlink_vault' do
   link_type :symbolic
   target_file '/usr/bin/consul'
@@ -32,11 +34,13 @@ link 'symlink_vault' do
   not_if { ::File.symlink?('/usr/bin/consul') }
 end
 
+# Add service for Consul
 template '/etc/systemd/system/consul.service' do
   source 'consul.service.erb'
   not_if { ::File.exist?('/etc/systemd/system/consul.service') }
 end
 
+# Start Consul as a service
 service 'consul' do
   action [:enable, :start]
 end

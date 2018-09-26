@@ -16,7 +16,7 @@ fi
   echo "DONE. Installing Vault ... " || \
   { echo "FAILED. Unable to install Vault. Exit now."; exit 1; }
 
-sudo chef-client --local-mode --runlist 'install_vault,install_consul'
+sudo chef-client --local-mode --runlist 'install_consul,install_vault'
 
 echo "Add Vault, Consul to PATH ..."
 echo "export PATH=\"$PATH:/usr/bin/vault:/usr/bin/consul\"" >> ~/.profile && . ~/.profile
@@ -24,5 +24,3 @@ echo "export PATH=\"$PATH:/usr/bin/vault:/usr/bin/consul\"" >> ~/.profile && . ~
 [ $? -eq 0 ] && \
   echo "DONE. Vault and Consul has been sucessfully installed! Prepare to lauch Vault and Consul!" || \
   { echo "FAILED to install Vault. Exit now."; exit 1; }
-
-
