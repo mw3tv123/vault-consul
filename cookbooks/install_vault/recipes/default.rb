@@ -21,7 +21,7 @@ end
 
 # Copy Vault's config to /opt/vault_0
 execute 'copy_vault_config' do
-  command 'cp ~/vautl_config/config.hcl /opt/vault/config.hcl'
+  command 'cp ~/vautl_consul/config.hcl /opt/vault/config.hcl'
   not_if { ::File.exist?('/opt/vault/config.hcl') }
 end
 
