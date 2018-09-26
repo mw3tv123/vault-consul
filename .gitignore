@@ -9,8 +9,6 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
-Vagrantfile
-*.py
 
 # Used by dotenv library to load environment variables.
 # .env
