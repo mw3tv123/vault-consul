@@ -1,13 +1,16 @@
 [Unit]
 Description=Consul Storage Service
+Requires=network-online.target
 After=network.target
+Documentation=https://consul.io/docs/
 
 [Service]
-Type=simple
-User=root
-Environment=/opt/consul
-ExecStart=/opt/consul
-Restart=on-abort
+Restart=on-failure
+Environment=GOMAXPROCS=2
+ExecStart=/usr/bin/consul agent $OPTIONS -pid-file=/run/consul/consul.pid -config-dir=/etc/consul.d
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGINT
+TimeoutStopSec=5
 
 [Install]
 WantedBy=multi-user.target
