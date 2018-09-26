@@ -11,7 +11,7 @@ remote_file 'vault_0.11.1_linux_amd64.zip' do
   checksum 'eb8d2461d0ca249c1f91005f878795998bdeafccfde0b9bae82343541ce65996'
 end
 
-directory '/root/vault' do
+directory '/opt/vault' do
   # action :create
 end
 
@@ -19,7 +19,13 @@ end
 bash 'extract_module' do
   code <<-EOH
     echo "Unziping Vault ... "
-    unzip -fo vault_0.11.1_linux_amd64.zip -d vault/
+    unzip -fo vault_0.11.1_linux_amd64.zip -d /opt/vault/
     EOH
-  not_if { ::File.exist?('/root/vault/vault') }
+  not_if { ::File.exist?('/opt/vault/vault') }
+end
+
+link 'symlink_vault' do
+  link_type :symbolic
+  target_file '/usr/bin/vault'
+  to '/opt/vault'
 end

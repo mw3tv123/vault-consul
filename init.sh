@@ -16,11 +16,10 @@ fi
   echo "DONE. Installing Vault ... " || \
   { echo "FAILED. Unable to install Vault. Exit now. "; exit 0; }
 
-cp vault.rb .. && cd ..
 sudo chef-client --local-mode vault.rb
 
 echo "Add vault to PATH ..."
-echo "export PATH=\"$PATH:$HOME/vault\"" >> ~/.profile && source ~/.profile
+echo "export PATH=\"$PATH:/usr/bin/vault\"" >> ~/.profile && source ~/.profile
 
 [ $? -eq 0 ] && \
   echo "DONE. Vault has been sucessfully installed! Exit now." || \
