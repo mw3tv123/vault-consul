@@ -16,10 +16,10 @@ fi
   echo "DONE. Installing Vault ... " || \
   { echo "FAILED. Unable to install Vault. Exit now. "; exit 0; }
 
-sudo chef-client --local-mode vault.rb
+sudo chef-client --local-mode vault.rb consul.rb
 
-echo "Add vault to PATH ..."
-echo "export PATH=\"$PATH:/usr/bin/vault\"" >> ~/.profile && source ~/.profile
+echo "Add Vault, Consul to PATH ..."
+echo "export PATH=\"$PATH:/usr/bin/vault:/usr/bin/consul\"" >> ~/.profile && source ~/.profile
 
 [ $? -eq 0 ] && \
   echo "DONE. Vault has been sucessfully installed! Exit now." || \
