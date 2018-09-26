@@ -42,7 +42,6 @@ end
 # Create Vault service file
 template '/etc/systemd/system/vault.service' do
   source 'vault.service.erb'
-  not_if { ::File.exist?('/etc/systemd/system/vault.service') }
 end
 
 # Start Vault as a service
