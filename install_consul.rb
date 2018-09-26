@@ -30,7 +30,7 @@ link 'symlink_vault' do
 end
 
 template '/etc/systemd/system/consul.service' do
-  source 'consul.service.erb'
+  source './templates/consul.service.erb'
 end
 
 service 'consul' do
