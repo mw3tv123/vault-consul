@@ -25,7 +25,7 @@ script 'extract_module' do
     cd ~/vault_consul && cp config.hcl /opt/vault/config.hcl
     unzip -o /tmp/vault_0.11.1_linux_amd64.zip -d /opt/vault/
     EOH
-  not_if { ::File.exist?('/opt/vault/vault') }
+  not_if { ::File.exist?('/opt/vault/config.hcl') }
 end
 
 link 'symlink_vault' do
