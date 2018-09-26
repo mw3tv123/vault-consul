@@ -6,7 +6,8 @@ Documentation=https://www.vaultproject.io/docs/
 
 [Service]
 Restart=on-failure
-Environment=GOMAXPROCS=2
+Environment=GOMAXPROCS=2 "VAULT_ADDR='http://127.0.0.1:8200'"
+ExecStartPre=/bin/export $VAULT_ADDR
 ExecStart=/opt/vault/vault server -config=/opt/vault/config.hcl
 ExecReload=/bin/kill -s HUP $MAINPID
 KillSignal=SIGINT
