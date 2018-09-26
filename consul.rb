@@ -18,7 +18,7 @@ end
 
 # Extract Consul
 execute 'extract_module' do
-  command 'unzip -o /consul_1.2.3_linux_amd64.zip -d /opt/consul/'
+  command 'unzip -o /tmp/consul_1.2.3_linux_amd64.zip -d /opt/consul/'
   live_stream true
   not_if { ::File.exist?('/opt/consul/consul') }
 end
